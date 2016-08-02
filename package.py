@@ -1,6 +1,6 @@
 name = "ptex"
 
-version = "2.1.28"
+version = "2.0.62"
 
 variants = [
     ["platform-linux"]
