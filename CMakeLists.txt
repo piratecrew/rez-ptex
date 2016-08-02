@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 include(RezBuild)
 include(ExternalProject)
+include(IlpHelpers)
 
 set(ptex_version v${PTEX_VERSION})
 
@@ -14,8 +15,6 @@ if(${REZ_BUILD_INSTALL})
 else()
     set(install_cmd "")
 endif()
-
-message(STATUS "INSTALL? ${REZ_BUILD_INSTALL}" )
 
 ExternalProject_add(
     ptex
