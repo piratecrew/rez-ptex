@@ -7,5 +7,6 @@ variants = [
 ]
 
 def commands():
+    env.CMAKE_MODULE_PATH.append("{root}/cmake")
     env.PATH.prepend("{root}/bin")
-    env.LD_LIBRARY_PATH.append("{root}/lib64")
+    env.LD_LIBRARY_PATH.append("{root}/lib")
