@@ -5,4 +5,3 @@ Rez package for Ptex
 
 Build status id for versions:
   - 2.1.28
-  - 2.0.62

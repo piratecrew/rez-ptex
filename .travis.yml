@@ -5,7 +5,6 @@ language: cpp
 
 env:
   - VERSION=2.1.28
-  - VERSION=2.0.62
 
 before_install:
   - sudo apt-get -qq update
