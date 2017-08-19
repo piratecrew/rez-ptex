@@ -2,28 +2,24 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 include(RezBuild)
 include(ExternalProject)
-include(IlpHelpers)
 
-set(ptex_version v${PTEX_VERSION})
+set(ptex_version ${PTEX_VERSION})
+set(url_ptex https://github.com/wdas/ptex/archive/v${ptex_version}.zip)
 
-set(url_ptex https://github.com/wdas/ptex.git)
+if(${REZ_BUILD_INSTALL})
+    set(install_cmd make install ${make_args})
+else()
+    set(install_cmd "")
+endif()
 
 ExternalProject_add(
     ptex
-    GIT_REPOSITORY ${url_ptex}
-    GIT_TAG ${ptex_version}
+    URL ${url_ptex}
     PREFIX ptex
-    UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND make -C ${PROJECT_BINARY_DIR}/ptex/src/ptex/src
-    INSTALL_COMMAND ""
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+    INSTALL_COMMAND "${install_cmd}"
+    ALWAYS 1
 )
-
-install(DIRECTORY 
-    ${CMAKE_BINARY_DIR}/ptex/src/ptex/install/bin
-    ${CMAKE_BINARY_DIR}/ptex/src/ptex/install/include
-    ${CMAKE_BINARY_DIR}/ptex/src/ptex/install/lib
-    DESTINATION .)
 
 rez_install_files(
     cmake/ptex.cmake

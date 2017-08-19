@@ -1,0 +1,26 @@
+sudo: required
+dist: trusty
+
+language: cpp
+
+env:
+  - VERSION=2.1.28
+
+before_install:
+  - sudo apt-get -qq update
+
+install:
+  - git clone https://github.com/nerdvegas/rez.git
+  - cd rez
+  - python ./install.py -v /tmp/rez
+  - cd ..
+  - export PATH=/tmp/rez/bin/rez:$PATH
+  - mkdir -p /home/travis/packages
+  - rez-bind platform
+  - rez-bind arch
+  - rez-bind os
+  - rez-bind python
+
+script:
+  - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
+  - rez-build -i
